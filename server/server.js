@@ -6,7 +6,7 @@ const io = require('socket.io')(http);
 let players = {};
 let projectiles = [];
 
-app.use(express.static('client')); // Изменено на правильный путь
+app.use(express.static('../client')); // Изменено на правильный путь
 
 io.on('connection', (socket) => {
     console.log('Игрок подключился:', socket.id);
