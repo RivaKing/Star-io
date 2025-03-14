@@ -48,7 +48,6 @@ function update() {
         if (keys['a']) dx -= speed;
         if (keys['d']) dx += speed;
 
-        // Нормализация скорости, если движемся по диагонали
         if (dx !== 0 && dy !== 0) {
             const length = Math.sqrt(dx * dx + dy * dy);
             dx = (dx / length) * speed;
@@ -68,8 +67,7 @@ function update() {
 socket.on('updatePlayers', (serverPlayers) => {
     for (let id in serverPlayers) {
         if (id === socket.id) {
-            // Синхронизируем здоровье и координаты с сервера, но сохраняем локальные x и y
-            player.health = serverPlayers[id].health; // Обновляем локальное здоровье
+            player.health = serverPlayers[id].health;
             players[id] = { ...serverPlayers[id], x: player.x, y: player.y };
         } else if (!players[id]) {
             players[id] = serverPlayers[id];
@@ -103,7 +101,6 @@ function draw() {
     ctx.save();
     ctx.translate(-cameraX, -cameraY);
 
-    // Фон и сетка остаются без изменений
     ctx.fillStyle = '#333333';
     ctx.fillRect(-canvas.width, -canvas.height, WORLD_WIDTH * 2, WORLD_HEIGHT * 2);
     ctx.fillStyle = '#ffffff';
@@ -122,13 +119,12 @@ function draw() {
         ctx.moveTo(0, y);
         ctx.lineTo(WORLD_WIDTH, y);
         ctx.stroke();
-}
+    }
 
     drawProjectiles(ctx, projectiles);
 
-    // Рисуем других игроков
     for (let id in players) {
-        if (id !== socket.id) { // Пропускаем себя
+        if (id !== socket.id) {
             const p = players[id];
             ctx.beginPath();
             let pulse = Math.sin(Date.now() * 0.005) * 1 + 20;
@@ -144,7 +140,6 @@ function draw() {
         }
     }
 
-    // Рисуем себя отдельно
     ctx.beginPath();
     let pulse = Math.sin(Date.now() * 0.005) * 1 + 20;
     ctx.arc(player.x, player.y, pulse, 0, Math.PI * 2);
@@ -159,7 +154,6 @@ function draw() {
 
     ctx.restore();
 
-    // Отрисовка смерти остаётся без изменений
     if (isDead) {
         ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -178,10 +172,15 @@ function draw() {
         ctx.font = '20px Arial';
         ctx.fillText('Возродиться', canvas.width / 2, canvas.height / 2 + 80);
     }
-
-    update();
-    requestAnimationFrame(draw);
 }
+
+// Основной игровой цикл с фиксированными 30 FPS
+function gameLoop() {
+    update(); // Обновляем движение игрока
+    draw();   // Рисуем кадр
+}
+
+setInterval(gameLoop, 1000 / 30); // Запускаем цикл на 30 FPS
 
 canvas.addEventListener('click', (e) => {
     if (isDead) {
@@ -198,10 +197,7 @@ canvas.addEventListener('click', (e) => {
             isDead = false;
             player = { x: 100, y: 100, radius: 20, health: 100 };
             socket.emit('respawn');
-            // Принудительно обновляем позицию на сервере
             socket.emit('move', { x: player.x, y: player.y, radius: player.radius });
         }
     }
 });
-
-draw();

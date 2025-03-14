@@ -6,7 +6,7 @@ const io = require('socket.io')(http);
 let players = {};
 let projectiles = [];
 
-app.use(express.static('../client'));
+app.use(express.static('client')); // Изменено на правильный путь
 
 io.on('connection', (socket) => {
     console.log('Игрок подключился:', socket.id);
@@ -80,7 +80,7 @@ function gameLoop() {
     });
 
     io.emit('updateProjectiles', projectiles);
-    setTimeout(gameLoop, 1000 / 60);
+    setTimeout(gameLoop, 1000 / 30); // Изменено на 30 FPS
 }
 
 gameLoop();
