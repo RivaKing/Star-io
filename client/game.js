@@ -39,7 +39,7 @@ canvas.addEventListener('mousedown', (e) => {
 
 function update() {
     if (!isDead) {
-        const speed = 15;
+        const speed = 30;
         let dx = 0;
         let dy = 0;
 

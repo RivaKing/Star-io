@@ -1,4 +1,4 @@
-const SHOOT_SPEED = 10;
+const SHOOT_SPEED = 40;
 const SHOOT_RADIUS = 10;
 
 function createProjectile(player, mouseX, mouseY, cameraX, cameraY, socket) {
