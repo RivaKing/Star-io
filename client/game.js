@@ -39,7 +39,7 @@ canvas.addEventListener('mousedown', (e) => {
 
 function update() {
     if (!isDead) {
-        const speed = 30;
+        const speed = 8;
         let dx = 0;
         let dy = 0;
 
@@ -180,7 +180,7 @@ function gameLoop() {
     draw();   // Рисуем кадр
 }
 
-setInterval(gameLoop, 1000 / 30); // Запускаем цикл на 30 FPS
+setInterval(gameLoop, 1000 / 60); // Запускаем цикл на 30 FPS
 
 canvas.addEventListener('click', (e) => {
     if (isDead) {

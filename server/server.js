@@ -80,7 +80,7 @@ function gameLoop() {
     });
 
     io.emit('updateProjectiles', projectiles);
-    setTimeout(gameLoop, 1000 / 30); // Изменено на 30 FPS
+    setTimeout(gameLoop, 1000 / 60); // Изменено на 30 FPS
 }
 
 gameLoop();
