@@ -11,7 +11,7 @@ app.use(express.static('../client')); // Изменено на правильн�
 io.on('connection', (socket) => {
     console.log('Игрок подключился:', socket.id);
 
-    if (Object.keys(players).length >= 2) {
+    if (Object.keys(players).length >= 10) {
         socket.disconnect();
         return;
     }

@@ -43,7 +43,7 @@ function update() {
         let dx = 0;
         let dy = 0;
 
-        if (keys['w']) dy -= speed;
+        if (keys['w'] || keys['ц']) dy -= speed;
         if (keys['s']) dy += speed;
         if (keys['a']) dx -= speed;
         if (keys['d']) dx += speed;
