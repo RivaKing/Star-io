@@ -1,7 +1,14 @@
 const SHOOT_SPEED = 40;
 const SHOOT_RADIUS = 10;
+const SHOOT_COOLDOWN = 500; // Задержка в миллисекундах между выстрелами
+let lastShotTime = 0; // Время последнего выстрела
 
-function createProjectile(player, mouseX, mouseY, cameraX, cameraY, socket) {
+export function createProjectile(player, mouseX, mouseY, cameraX, cameraY, socket) {
+    const currentTime = Date.now();
+    if (currentTime - lastShotTime < SHOOT_COOLDOWN) {
+        return; // Если не прошло достаточно времени, выстрел не происходит
+    }
+
     const worldMouseX = mouseX + cameraX;
     const worldMouseY = mouseY + cameraY;
 
@@ -21,9 +28,10 @@ function createProjectile(player, mouseX, mouseY, cameraX, cameraY, socket) {
     };
 
     socket.emit('shoot', projectile);
+    lastShotTime = currentTime; // Обновляем время последнего выстрела
 }
 
-function drawProjectiles(ctx, projectiles) {
+export function drawProjectiles(ctx, projectiles) {
     projectiles.forEach((proj) => {
         ctx.beginPath();
         ctx.arc(proj.x, proj.y, proj.radius, 0, Math.PI * 2);
