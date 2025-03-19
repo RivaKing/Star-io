@@ -1,4 +1,4 @@
-const SHOOT_SPEED = 40;
+const SHOOT_SPEED = 10;
 const SHOOT_RADIUS = 10;
 const SHOOT_COOLDOWN = 500; // Задержка в миллисекундах между выстрелами
 let lastShotTime = 0; // Время последнего выстрела
@@ -24,11 +24,12 @@ export function createProjectile(player, mouseX, mouseY, cameraX, cameraY, socke
         vx: vx,
         vy: vy,
         radius: SHOOT_RADIUS,
-        owner: socket.id
+        owner: socket.id,
+        ttl: 2000
     };
 
     socket.emit('shoot', projectile);
-    lastShotTime = currentTime; // Обновляем время последнего выстрела
+    lastShotTime = currentTime;
 }
 
 export function drawProjectiles(ctx, projectiles) {

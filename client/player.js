@@ -1,7 +1,8 @@
-import { WORLD_WIDTH, WORLD_HEIGHT, player, isDead, socket } from './main.js'; // Добавляем socket
+import { WORLD_WIDTH, WORLD_HEIGHT, player, socket } from './main.js';
 import { createProjectile } from './shoot.js';
 
 export let keys = {};
+export let isDead = false; // Локальная переменная, синхронизируемая с main.js
 
 export function initPlayerControls(canvas, socket) {
     document.addEventListener('keydown', (e) => {
@@ -71,4 +72,9 @@ export function updatePlayer() {
 
         socket.emit('move', { x: player.x, y: player.y, radius: player.radius });
     }
+}
+
+// Функция для синхронизации isDead
+export function setIsDead(value) {
+    isDead = value;
 }

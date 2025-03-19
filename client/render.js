@@ -1,4 +1,5 @@
-import { WORLD_WIDTH, WORLD_HEIGHT, GRID_SIZE, player, players, projectiles, isDead, socket } from './main.js'; // Убедитесь, что socket импортирован
+import { WORLD_WIDTH, WORLD_HEIGHT, GRID_SIZE, player, players, projectiles, socket } from './main.js'; // Убедитесь, что socket импортирован
+import { isDead } from './player.js';
 import { drawProjectiles } from './shoot.js';
 
 export function draw(ctx) {
@@ -35,7 +36,7 @@ export function draw(ctx) {
 
     // Отрисовка других игроков
     for (let id in players) {
-        if (id !== socket.id) { // Здесь используется socket.id
+        if (id !== socket.id) {
             const p = players[id];
             ctx.beginPath();
             let pulse = Math.sin(Date.now() * 0.005) * 1 + 20;

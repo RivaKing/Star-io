@@ -1,8 +1,12 @@
-// network.js
-import { player, players, projectiles, isDead } from './main.js';
+import { player, players, projectiles, socket } from './main.js';
+import { setIsDead } from './player.js';
 
 export function initSocketListeners(socket) {
-    socket.on('updatePlayers', (serverPlayers) => {
+    socket.on('updateGameState', (data) => {
+        const serverPlayers = data.players;
+        const serverProjectiles = data.projectiles;
+
+        // Обработка игроков
         for (let id in serverPlayers) {
             if (id === socket.id) {
                 player.health = serverPlayers[id].health;
@@ -15,20 +19,19 @@ export function initSocketListeners(socket) {
                 players[id].health = serverPlayers[id].health;
             }
         }
+
         for (let id in players) {
             if (!serverPlayers[id]) {
                 delete players[id];
             }
         }
-    });
 
-    socket.on('updateProjectiles', (serverProjectiles) => {
-        // Очищаем текущий массив и добавляем новые элементы
-        projectiles.length = 0; // Очищаем массив
-        serverProjectiles.forEach(proj => projectiles.push(proj)); // Копируем элементы
+        // Обработка снарядов
+        projectiles.length = 0;
+        serverProjectiles.forEach(proj => projectiles.push(proj));
     });
 
     socket.on('playerDead', () => {
-        isDead = true;
+        setIsDead(true); // Устанавливаем через функцию
     });
 }
