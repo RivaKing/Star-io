@@ -3,6 +3,7 @@ import { createProjectile } from './shoot.js';
 
 export let keys = {};
 export let isDead = false; // Локальная переменная, синхронизируемая с main.js
+const speed = 6;
 
 export function initPlayerControls(canvas, socket) {
     document.addEventListener('keydown', (e) => {
@@ -49,7 +50,6 @@ export function initPlayerControls(canvas, socket) {
 
 export function updatePlayer() {
     if (!isDead) {
-        const speed = 8;
         let dx = 0;
         let dy = 0;
 

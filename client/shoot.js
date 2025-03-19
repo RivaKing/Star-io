@@ -1,5 +1,5 @@
-const SHOOT_SPEED = 10;
-const SHOOT_RADIUS = 10;
+const SHOOT_SPEED = 20;
+const SHOOT_RADIUS = 13;
 const SHOOT_COOLDOWN = 500; // Задержка в миллисекундах между выстрелами
 let lastShotTime = 0; // Время последнего выстрела
 

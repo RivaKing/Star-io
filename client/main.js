@@ -7,9 +7,9 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 export const socket = io();
 
-export const WORLD_WIDTH = 5000;
-export const WORLD_HEIGHT = 5000;
-export const GRID_SIZE = 100;
+export const WORLD_WIDTH = 6000;
+export const WORLD_HEIGHT = 6000;
+export const GRID_SIZE = 600;
 
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
