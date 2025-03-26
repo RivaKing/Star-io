@@ -1,4 +1,4 @@
-import { WORLD_WIDTH, WORLD_HEIGHT, GRID_SIZE, player, players, projectiles, socket } from './main.js'; // Убедитесь, что socket импортирован
+import { WORLD_WIDTH, WORLD_HEIGHT, GRID_SIZE, player, players, projectiles, socket } from './main.js';
 import { isDead } from './player.js';
 import { drawProjectiles } from './shoot.js';
 
@@ -11,12 +11,11 @@ export function draw(ctx) {
     ctx.save();
     ctx.translate(-cameraX, -cameraY);
 
-    // Отрисовка фона и сетки
     ctx.fillStyle = '#333333';
     ctx.fillRect(-ctx.canvas.width, -ctx.canvas.height, WORLD_WIDTH * 2, WORLD_HEIGHT * 2);
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
-    
+
     ctx.strokeStyle = '#cccccc';
     ctx.lineWidth = 1;
     for (let x = 0; x <= WORLD_WIDTH; x += GRID_SIZE) {
@@ -34,12 +33,11 @@ export function draw(ctx) {
 
     drawProjectiles(ctx, projectiles);
 
-    // Отрисовка других игроков
     for (let id in players) {
         if (id !== socket.id) {
             const p = players[id];
             ctx.beginPath();
-            let pulse = Math.sin(Date.now() * 0.005) * 1 + 20;
+            let pulse = Math.sin(Date.now() * 0.005) * 1 + (p.radius || 20);
             ctx.arc(p.x, p.y, pulse, 0, Math.PI * 2);
             ctx.fillStyle = 'red';
             ctx.fill();
@@ -52,9 +50,8 @@ export function draw(ctx) {
         }
     }
 
-    // Отрисовка текущего игрока
     ctx.beginPath();
-    let pulse = Math.sin(Date.now() * 0.005) * 1 + 20;
+    let pulse = Math.sin(Date.now() * 0.005) * 1 + player.radius;
     ctx.arc(player.x, player.y, pulse, 0, Math.PI * 2);
     ctx.fillStyle = 'blue';
     ctx.fill();
@@ -67,7 +64,6 @@ export function draw(ctx) {
 
     ctx.restore();
 
-    // Экран смерти
     if (isDead) {
         ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);

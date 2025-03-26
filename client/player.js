@@ -2,8 +2,10 @@ import { WORLD_WIDTH, WORLD_HEIGHT, player, socket } from './main.js';
 import { createProjectile } from './shoot.js';
 
 export let keys = {};
-export let isDead = false; // Локальная переменная, синхронизируемая с main.js
+export let isDead = false;
 const speed = 6;
+const MOVE_BUFFER_INTERVAL = 100; // Отправка каждые 100 мс
+let moveBuffer = null;
 
 export function initPlayerControls(canvas, socket) {
     document.addEventListener('keydown', (e) => {
@@ -46,6 +48,15 @@ export function initPlayerControls(canvas, socket) {
             }
         }
     });
+
+    function sendMoveUpdates() {
+        if (moveBuffer) {
+            socket.emit('move', moveBuffer);
+            moveBuffer = null;
+        }
+        setTimeout(sendMoveUpdates, MOVE_BUFFER_INTERVAL);
+    }
+    sendMoveUpdates();
 }
 
 export function updatePlayer() {
@@ -58,23 +69,24 @@ export function updatePlayer() {
         if (keys['a'] || keys['ф']) dx -= speed;
         if (keys['d'] || keys['в']) dx += speed;
 
-        if (dx !== 0 && dy !== 0) {
-            const length = Math.sqrt(dx * dx + dy * dy);
-            dx = (dx / length) * speed;
-            dy = (dy / length) * speed;
+        if (dx !== 0 || dy !== 0) {
+            if (dx !== 0 && dy !== 0) {
+                const length = Math.sqrt(dx * dx + dy * dy);
+                dx = (dx / length) * speed;
+                dy = (dy / length) * speed;
+            }
+
+            player.x += dx;
+            player.y += dy;
+
+            player.x = Math.max(player.radius, Math.min(WORLD_WIDTH - player.radius, player.x));
+            player.y = Math.max(player.radius, Math.min(WORLD_HEIGHT - player.radius, player.y));
+
+            moveBuffer = { x: player.x, y: player.y, radius: player.radius };
         }
-
-        player.x += dx;
-        player.y += dy;
-
-        player.x = Math.max(player.radius, Math.min(WORLD_WIDTH - player.radius, player.x));
-        player.y = Math.max(player.radius, Math.min(WORLD_HEIGHT - player.radius, player.y));
-
-        socket.emit('move', { x: player.x, y: player.y, radius: player.radius });
     }
 }
 
-// Функция для синхронизации isDead
 export function setIsDead(value) {
     isDead = value;
 }

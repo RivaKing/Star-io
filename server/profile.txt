@@ -1,0 +1,236 @@
+Statistical profiling result from isolate-000001931995B000-15120-v8.log, (3114 ticks, 5 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+   2435   78.2%          C:\Windows\SYSTEM32\ntdll.dll
+    476   15.3%          C:\Program Files\nodejs\node.exe
+     13    0.4%          C:\Windows\System32\KERNELBASE.dll
+      5    0.2%          C:\Windows\System32\KERNEL32.DLL
+      1    0.0%          C:\Windows\system32\mswsock.dll
+      1    0.0%          C:\Windows\System32\WS2_32.dll
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+     21    0.7%   11.5%  Builtin: LoadIC
+     10    0.3%    5.5%  JS: ^processTimers node:internal/timers:514:25
+      9    0.3%    4.9%  Builtin: StoreIC
+      9    0.3%    4.9%  Builtin: KeyedLoadIC
+      9    0.3%    4.9%  Builtin: BaselineOutOfLinePrologue
+      6    0.2%    3.3%  Builtin: KeyedLoadIC_Megamorphic
+      6    0.2%    3.3%  Builtin: Call_ReceiverIsNotNullOrUndefined
+      6    0.2%    3.3%  Builtin: CallFunction_ReceiverIsNullOrUndefined
+      5    0.2%    2.7%  Builtin: ToBooleanForBaselineJump
+      5    0.2%    2.7%  Builtin: LoadGlobalIC
+      5    0.2%    2.7%  Builtin: KeyedLoadIC_PolymorphicName
+      5    0.2%    2.7%  Builtin: Call_ReceiverIsAny
+      5    0.2%    2.7%  Builtin: CallFunction_ReceiverIsAny
+      4    0.1%    2.2%  Builtin: JSEntryTrampoline
+      4    0.1%    2.2%  Builtin: FastNewClosure
+      4    0.1%    2.2%  Builtin: CallFunction_ReceiverIsNotNullOrUndefined
+      3    0.1%    1.6%  Builtin: StrictEqual_Baseline
+      3    0.1%    1.6%  Builtin: StoreFastElementIC_InBounds
+      3    0.1%    1.6%  Builtin: KeyedStoreIC
+      3    0.1%    1.6%  Builtin: Call_ReceiverIsNullOrUndefined
+      3    0.1%    1.6%  Builtin: BaselineLeaveFrame
+      2    0.1%    1.1%  JS: ^SafeMap node:internal/per_context/primordials:409:16
+      2    0.1%    1.1%  Builtin: StoreFastElementIC_NoTransitionGrowAndHandleCOW
+      2    0.1%    1.1%  Builtin: GreaterThanOrEqual_Baseline
+      2    0.1%    1.1%  Builtin: ArrayIteratorPrototypeNext
+      1    0.0%    0.5%  JS: ~afterWrite node:internal/streams/writable:699:20
+      1    0.0%    0.5%  JS: ^write D:\Star.io\server\node_modules\engine.io\build\socket.js:342:10
+      1    0.0%    0.5%  JS: ^toNamespacedPath node:path:703:19
+      1    0.0%    0.5%  JS: ^sendPacket D:\Star.io\server\node_modules\engine.io\build\socket.js:356:15
+      1    0.0%    0.5%  JS: ^remove node:internal/linkedlist:16:16
+      1    0.0%    0.5%  JS: ^pushAsyncContext node:internal/async_hooks:539:26
+      1    0.0%    0.5%  JS: ^onwrite node:internal/streams/writable:615:17
+      1    0.0%    0.5%  JS: ^next node:internal/per_context/primordials:331:9
+      1    0.0%    0.5%  JS: ^insert node:internal/timers:371:16
+      1    0.0%    0.5%  JS: ^getInfo D:\Star.io\server\node_modules\ws\lib\receiver.js:185:10
+      1    0.0%    0.5%  JS: ^fromStringFast node:buffer:447:24
+      1    0.0%    0.5%  JS: ^debug D:\Star.io\server\node_modules\engine.io\node_modules\debug\src\common.js:66:17
+      1    0.0%    0.5%  JS: ^_encode D:\Star.io\server\node_modules\socket.io-adapter\dist\in-memory-adapter.js:166:12
+      1    0.0%    0.5%  JS: ^<anonymous> node:internal/validators:176:40
+      1    0.0%    0.5%  JS: ^<anonymous> D:\Star.io\server\server.js:196:38
+      1    0.0%    0.5%  JS: *resolve node:path:190:10
+      1    0.0%    0.5%  JS: *noop node:internal/util/debuglog:57:14
+      1    0.0%    0.5%  Builtin: TypedArrayPrototypeLength
+      1    0.0%    0.5%  Builtin: Subtract_Baseline
+      1    0.0%    0.5%  Builtin: StoreICBaseline
+      1    0.0%    0.5%  Builtin: ShiftRightLogicalSmi_Baseline
+      1    0.0%    0.5%  Builtin: ObjectPrototypeHasOwnProperty
+      1    0.0%    0.5%  Builtin: MultiplySmi_Baseline
+      1    0.0%    0.5%  Builtin: MapConstructor
+      1    0.0%    0.5%  Builtin: LoadIC_NoFeedback
+      1    0.0%    0.5%  Builtin: LoadIC_Megamorphic
+      1    0.0%    0.5%  Builtin: LoadICBaseline
+      1    0.0%    0.5%  Builtin: LessThan_Baseline
+      1    0.0%    0.5%  Builtin: KeyedStoreIC_Megamorphic
+      1    0.0%    0.5%  Builtin: KeyedStoreICBaseline
+      1    0.0%    0.5%  Builtin: KeyedLoadICBaseline
+      1    0.0%    0.5%  Builtin: JSConstructStubGeneric
+      1    0.0%    0.5%  Builtin: InstanceOf_Baseline
+      1    0.0%    0.5%  Builtin: ForInNext
+      1    0.0%    0.5%  Builtin: FastNewObject
+      1    0.0%    0.5%  Builtin: CreateTypedArray
+      1    0.0%    0.5%  Builtin: CreateShallowObjectLiteral
+      1    0.0%    0.5%  Builtin: Construct
+      1    0.0%    0.5%  Builtin: Call_ReceiverIsNotNullOrUndefined_Baseline_Compact
+      1    0.0%    0.5%  Builtin: CallFunctionTemplate_Generic
+      1    0.0%    0.5%  Builtin: ArrayIndexOfSmiOrObject
+      1    0.0%    0.5%  Builtin: AddSmi_Baseline
+
+ [C++]:
+   ticks  total  nonlib   name
+
+ [Summary]:
+   ticks  total  nonlib   name
+    178    5.7%   97.3%  JavaScript
+      0    0.0%    0.0%  C++
+      4    0.1%    2.2%  GC
+   2931   94.1%          Shared libraries
+      5    0.2%          Unaccounted
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+   2435   78.2%  C:\Windows\SYSTEM32\ntdll.dll
+
+    476   15.3%  C:\Program Files\nodejs\node.exe
+     42    8.8%    C:\Program Files\nodejs\node.exe
+     11   26.2%      JS: ^gameLoop D:\Star.io\server\server.js:134:18
+     11  100.0%        JS: ^listOnTimeout node:internal/timers:534:25
+     11  100.0%          JS: ^processTimers node:internal/timers:514:25
+      3    7.1%      JS: ^nextTick node:internal/process/task_queues:113:18
+      2   66.7%        JS: ^ondecoded D:\Star.io\server\node_modules\socket.io\dist\client.js:194:14
+      2  100.0%          JS: ^Emitter.emit D:\Star.io\server\node_modules\@socket.io\component-emitter\lib\cjs\index.js:130:34
+      2  100.0%            JS: ^add D:\Star.io\server\node_modules\socket.io-parser\build\cjs\index.js:135:8
+      1   33.3%        JS: ^onwrite node:internal/streams/writable:615:17
+      1  100.0%          JS: ^afterWriteDispatched node:internal/stream_base_commons:154:30
+      1  100.0%            JS: ^writevGeneric node:internal/stream_base_commons:121:23
+      2    4.8%      JS: ^tryParse D:\Star.io\server\node_modules\socket.io-parser\build\cjs\index.js:244:13
+      2  100.0%        JS: ^decodeString D:\Star.io\server\node_modules\socket.io-parser\build\cjs\index.js:181:17
+      2  100.0%          JS: ^add D:\Star.io\server\node_modules\socket.io-parser\build\cjs\index.js:135:8
+      2  100.0%            JS: ^ondata D:\Star.io\server\node_modules\socket.io\dist\client.js:179:11
+      1    2.4%      JS: ~readableAddChunkPushByteMode node:internal/streams/readable:463:38
+      1  100.0%        JS: ~Readable.push node:internal/streams/readable:387:35
+      1  100.0%          JS: ~<anonymous> node:internal/fs/streams:262:41
+      1    2.4%      JS: ~prepare D:\Star.io\server\node_modules\engine.io\build\server.js:485:12
+      1  100.0%        JS: ~handleRequest D:\Star.io\server\node_modules\engine.io\build\server.js:500:18
+      1  100.0%          JS: ^<anonymous> D:\Star.io\server\node_modules\engine.io\build\server.js:638:30
+      1  100.0%            JS: ^<anonymous> D:\Star.io\server\node_modules\socket.io\dist\index.js:312:27
+      1    2.4%      JS: ~parseAcceptEncoding D:\Star.io\server\node_modules\negotiator\lib\encoding.js:31:29
+      1  100.0%        JS: ~preferredEncodings D:\Star.io\server\node_modules\negotiator\lib\encoding.js:138:28
+      1  100.0%          JS: ~encodings D:\Star.io\server\node_modules\negotiator\index.js:52:52
+      1  100.0%            JS: ~Accepts.encoding.Accepts.encodings D:\Star.io\server\node_modules\accepts\index.js:127:40
+      1    2.4%      JS: ~onstat D:\Star.io\server\node_modules\send\index.js:716:33
+      1    2.4%      JS: ~onOpen D:\Star.io\server\node_modules\engine.io\build\socket.js:55:11
+      1  100.0%        JS: ~Socket D:\Star.io\server\node_modules\engine.io\build\socket.js:16:16
+      1  100.0%          JS: ~handshake D:\Star.io\server\node_modules\engine.io\build\server.js:239:20
+      1  100.0%            Builtin: AsyncFunctionAwaitResolveClosure
+      1    2.4%      JS: ~onFinished D:\Star.io\server\node_modules\on-finished\index.js:46:21
+      1  100.0%        JS: ~stream D:\Star.io\server\node_modules\send\index.js:784:47
+      1  100.0%          JS: ~send D:\Star.io\server\node_modules\send\index.js:601:43
+      1  100.0%            JS: ~onstat D:\Star.io\server\node_modules\send\index.js:716:33
+      1    2.4%      JS: ~onDataRequest D:\Star.io\server\node_modules\engine.io\build\transports\polling.js:87:18
+      1  100.0%        JS: ^onRequest D:\Star.io\server\node_modules\engine.io\build\transports\polling.js:33:14
+      1  100.0%          JS: ^callback D:\Star.io\server\node_modules\engine.io\build\server.js:504:26
+      1  100.0%            JS: ^verify D:\Star.io\server\node_modules\engine.io\build\server.js:101:11
+      1    2.4%      JS: ~freeParser node:_http_common:180:20
+      1  100.0%        JS: ^onParserExecuteCommon node:_http_server:918:31
+      1  100.0%          JS: ^onParserExecute node:_http_server:845:25
+      1    2.4%      JS: ~expressInit D:\Star.io\server\node_modules\express\lib\middleware\init.js:29:30
+      1  100.0%        JS: ~handle D:\Star.io\server\node_modules\express\lib\router\layer.js:86:49
+      1  100.0%          JS: ~trim_prefix D:\Star.io\server\node_modules\express\lib\router\index.js:293:23
+      1  100.0%            JS: ~<anonymous> D:\Star.io\server\node_modules\express\lib\router\index.js:280:64
+      1    2.4%      JS: ~addChunk node:internal/streams/readable:550:18
+      1  100.0%        JS: ^readableAddChunkPushByteMode node:internal/streams/readable:463:38
+      1  100.0%          JS: ^Readable.push node:internal/streams/readable:387:35
+      1  100.0%            JS: ~parserOnBody node:_http_common:120:22
+      1    2.4%      JS: ~_onconnect D:\Star.io\server\node_modules\socket.io\dist\socket.js:406:15
+      1  100.0%        JS: ~_doConnect D:\Star.io\server\node_modules\socket.io\dist\namespace.js:264:15
+      1  100.0%          JS: ~<anonymous> D:\Star.io\server\node_modules\socket.io\dist\namespace.js:219:30
+      1  100.0%            JS: ^processTicksAndRejections node:internal/process/task_queues:72:35
+      1    2.4%      JS: ~Layer D:\Star.io\server\node_modules\express\lib\router\layer.js:33:15
+      1  100.0%        JS: ~use D:\Star.io\server\node_modules\express\lib\router\index.js:439:25
+      1  100.0%          JS: ~lazyrouter D:\Star.io\server\node_modules\express\lib\application.js:144:37
+      1  100.0%            JS: ~use D:\Star.io\server\node_modules\express\lib\application.js:194:23
+      1    2.4%      JS: ~<anonymous> node:internal/streams/operators:1:1
+      1  100.0%        JS: ^compileForInternalLoader node:internal/bootstrap/realm:384:27
+      1  100.0%          JS: ^requireBuiltin node:internal/bootstrap/realm:421:24
+      1  100.0%            JS: ~<anonymous> node:stream:1:1
+      1    2.4%      JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    2.4%      JS: ~<anonymous> node:dns:1:1
+      1  100.0%        JS: ^compileForInternalLoader node:internal/bootstrap/realm:384:27
+      1  100.0%          JS: ^requireBuiltin node:internal/bootstrap/realm:421:24
+      1  100.0%            JS: ~lookupAndListen node:net:2188:25
+      1    2.4%      JS: ~<anonymous> D:\Star.io\server\server.js:1:1
+      1  100.0%        JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    2.4%      JS: ~<anonymous> D:\Star.io\server\node_modules\express\lib\express.js:1:1
+      1  100.0%        JS: ~<anonymous> D:\Star.io\server\node_modules\express\index.js:1:1
+      1  100.0%          JS: ~<anonymous> D:\Star.io\server\server.js:1:1
+      1  100.0%            JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    2.4%      JS: ^processTimers node:internal/timers:514:25
+      1    2.4%      JS: ^originalurl D:\Star.io\server\node_modules\parseurl\index.js:65:22
+      1  100.0%        JS: ^serveStatic D:\Star.io\server\node_modules\serve-static\index.js:72:31
+      1  100.0%          JS: ^handle D:\Star.io\server\node_modules\express\lib\router\layer.js:86:49
+      1  100.0%            JS: ^trim_prefix D:\Star.io\server\node_modules\express\lib\router\index.js:293:23
+      1    2.4%      JS: ^onStreamRead node:internal/stream_base_commons:166:22
+      1    2.4%      JS: ^listOnTimeout node:internal/timers:534:25
+      1  100.0%        JS: ^processTimers node:internal/timers:514:25
+      1    2.4%      JS: ^emit node:events:465:44
+      1  100.0%        JS: ~<anonymous> D:\Star.io\server\node_modules\send\index.js:765:25
+      1    2.4%      JS: ^createWriteWrap node:internal/stream_base_commons:108:25
+      1  100.0%        JS: ^writevGeneric node:internal/stream_base_commons:121:23
+      1  100.0%          JS: ^Socket._writeGeneric node:net:940:42
+      1  100.0%            JS: ^Socket._writev node:net:977:36
+      1    2.4%      JS: ^_encode D:\Star.io\server\node_modules\socket.io-adapter\dist\in-memory-adapter.js:166:12
+      1  100.0%        JS: ^broadcast D:\Star.io\server\node_modules\socket.io-adapter\dist\in-memory-adapter.js:111:14
+      1  100.0%          JS: ^emit D:\Star.io\server\node_modules\socket.io\dist\broadcast-operator.js:157:9
+      1  100.0%            JS: ^emit D:\Star.io\server\node_modules\socket.io\dist\namespace.js:308:9
+      1    2.4%      JS: ^<anonymous> D:\Star.io\server\node_modules\engine.io-parser\build\cjs\index.js:19:60
+      1  100.0%        JS: ^encodePacket D:\Star.io\server\node_modules\engine.io-parser\build\cjs\encodePacket.js:6:22
+      1  100.0%          JS: ^<anonymous> D:\Star.io\server\node_modules\engine.io-parser\build\cjs\index.js:17:21
+      1  100.0%            Builtin: ArrayForEach
+      1    2.4%      Builtin: RegExpPrototypeTest
+      1  100.0%        JS: ~isIpv6LinkLocal node:net:2159:25
+      1  100.0%          JS: ~filterOnlyValidAddress node:net:2176:32
+      1  100.0%            JS: ~<anonymous> node:net:2193:38
+     14    2.9%    JS: ^wrapSafe node:internal/modules/cjs/loader:1444:18
+     14  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1504:37
+     14  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1687:37
+     14  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1274:33
+     14  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1020:24
+      8    1.7%    JS: ^compileForInternalLoader node:internal/bootstrap/realm:384:27
+      7   87.5%      JS: ^requireBuiltin node:internal/bootstrap/realm:421:24
+      1   14.3%        JS: ~<anonymous> node:tty:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:384:27
+      1  100.0%            JS: ~<anonymous> D:\Star.io\server\node_modules\debug\src\node.js:1:1
+      1   14.3%        JS: ~<anonymous> node:tls:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:384:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:421:24
+      1   14.3%        JS: ~<anonymous> node:internal/streams/compose:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:384:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:421:24
+      1   14.3%        JS: ~<anonymous> node:internal/fs/promises:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:384:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:421:24
+      1   14.3%        JS: ~<anonymous> node:internal/child_process:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:384:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:421:24
+      1   14.3%        JS: ~<anonymous> node:child_process:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:384:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:421:24
+      1   14.3%        JS: ~<anonymous> node:_http_client:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:384:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:421:24
+      1   12.5%      JS: ^compileForPublicLoader node:internal/bootstrap/realm:332:25
+      1  100.0%        JS: ^loadBuiltinModule node:internal/modules/helpers:102:27
+      1  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1020:24
+      1  100.0%            JS: ^traceSync node:diagnostics_channel:320:12
+
