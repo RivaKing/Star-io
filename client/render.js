@@ -1,36 +1,51 @@
-import { WORLD_WIDTH, WORLD_HEIGHT, GRID_SIZE, player, players, projectiles, socket } from './main.js'; // Убедитесь, что socket импортирован
+import { WORLD_WIDTH, WORLD_HEIGHT, GRID_SIZE, player, players, projectiles, socket } from './main.js';
 import { isDead } from './player.js';
 import { drawProjectiles } from './shoot.js';
 
-export function draw(ctx) {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+// Создаем offscreenCanvas, но не рисуем сетку сразу
+const offscreenCanvas = document.createElement('canvas');
+const offscreenCtx = offscreenCanvas.getContext('2d');
 
+// Функция для инициализации фона
+export function initBackground() {
+    offscreenCanvas.width = WORLD_WIDTH;
+    offscreenCanvas.height = WORLD_HEIGHT;
+
+    offscreenCtx.fillStyle = '#333333';
+    offscreenCtx.fillRect(-WORLD_WIDTH, -WORLD_HEIGHT, WORLD_WIDTH * 2, WORLD_HEIGHT * 2);
+    offscreenCtx.fillStyle = '#ffffff';
+    offscreenCtx.fillRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
+    offscreenCtx.strokeStyle = '#cccccc';
+    offscreenCtx.lineWidth = 1;
+
+    for (let x = 0; x <= WORLD_WIDTH; x += GRID_SIZE) {
+        offscreenCtx.beginPath();
+        offscreenCtx.moveTo(x, 0);
+        offscreenCtx.lineTo(x, WORLD_HEIGHT);
+        offscreenCtx.stroke();
+    }
+    for (let y = 0; y <= WORLD_HEIGHT; y += GRID_SIZE) {
+        offscreenCtx.beginPath();
+        offscreenCtx.moveTo(0, y);
+        offscreenCtx.lineTo(WORLD_WIDTH, y);
+        offscreenCtx.stroke();
+    }
+}
+
+// Кэшируем значение пульсации
+let pulse = 20;
+setInterval(() => {
+    pulse = Math.sin(Date.now() * 0.005) * 1 + 20;
+}, 100); // Обновляем раз в 100 мс
+
+export function draw(ctx) {
     const cameraX = player.x - ctx.canvas.width / 2;
     const cameraY = player.y - ctx.canvas.height / 2;
 
     ctx.save();
     ctx.translate(-cameraX, -cameraY);
-
-    // Отрисовка фона и сетки
-    ctx.fillStyle = '#333333';
-    ctx.fillRect(-ctx.canvas.width, -ctx.canvas.height, WORLD_WIDTH * 2, WORLD_HEIGHT * 2);
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
-    
-    ctx.strokeStyle = '#cccccc';
-    ctx.lineWidth = 1;
-    for (let x = 0; x <= WORLD_WIDTH; x += GRID_SIZE) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, WORLD_HEIGHT);
-        ctx.stroke();
-    }
-    for (let y = 0; y <= WORLD_HEIGHT; y += GRID_SIZE) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(WORLD_WIDTH, y);
-        ctx.stroke();
-    }
+    ctx.clearRect(cameraX, cameraY, ctx.canvas.width, ctx.canvas.height); // Очистка только видимой области
+    ctx.drawImage(offscreenCanvas, 0, 0);
 
     drawProjectiles(ctx, projectiles);
 
@@ -39,7 +54,6 @@ export function draw(ctx) {
         if (id !== socket.id) {
             const p = players[id];
             ctx.beginPath();
-            let pulse = Math.sin(Date.now() * 0.005) * 1 + 20;
             ctx.arc(p.x, p.y, pulse, 0, Math.PI * 2);
             ctx.fillStyle = 'red';
             ctx.fill();
@@ -54,7 +68,6 @@ export function draw(ctx) {
 
     // Отрисовка текущего игрока
     ctx.beginPath();
-    let pulse = Math.sin(Date.now() * 0.005) * 1 + 20;
     ctx.arc(player.x, player.y, pulse, 0, Math.PI * 2);
     ctx.fillStyle = 'blue';
     ctx.fill();
