@@ -6,7 +6,6 @@ export function initSocketListeners(socket) {
         const serverPlayers = data.players;
         const serverProjectiles = data.projectiles;
 
-        // Обработка игроков
         for (let id in serverPlayers) {
             if (id === socket.id) {
                 player.health = serverPlayers[id].health;
@@ -14,24 +13,21 @@ export function initSocketListeners(socket) {
             } else if (!players[id]) {
                 players[id] = serverPlayers[id];
             } else {
-                players[id].x += (serverPlayers[id].x - players[id].x) * 0.2;
-                players[id].y += (serverPlayers[id].y - players[id].y) * 0.2;
+                players[id].targetX = serverPlayers[id].x;
+                players[id].targetY = serverPlayers[id].y;
                 players[id].health = serverPlayers[id].health;
             }
         }
 
         for (let id in players) {
-            if (!serverPlayers[id]) {
-                delete players[id];
-            }
+            if (!serverPlayers[id]) delete players[id];
         }
 
-        // Обработка снарядов
         projectiles.length = 0;
         serverProjectiles.forEach(proj => projectiles.push(proj));
     });
 
     socket.on('playerDead', () => {
-        setIsDead(true); // Устанавливаем через функцию
+        setIsDead(true);
     });
 }
