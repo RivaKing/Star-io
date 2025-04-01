@@ -10,3 +10,7 @@ canvas {
     width: 100%; /* Растягиваем канвас по ширине */
     height: 100%; /* Растягиваем канвас по высоте */
 }
+
+html {
+    touch-action: manipulation;
+  }
